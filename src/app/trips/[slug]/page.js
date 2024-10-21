@@ -1,8 +1,11 @@
 import trips from "@/data/trips";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-function TripDetail() {
-  const trip = trips[0];
+function TripDetail({ params }) {
+  const trip = trips.find((trip) => trip.slug === params.slug);
+
+  if (!trip) redirect("/trips");
 
   return (
     <div className="max-w-5xl mx-auto border-gray-300 border-2 rounded-md mb-4">
